@@ -10,7 +10,10 @@ package 'nginx' do
 end
 
 #Nginx Configuration
-
+lb 'default' do
+  role 'default-sbeliakou-centos-73-x86-64-minimal.vagrantup.com'
+  action :attach
+end
 
 service 'nginx' do
   action [ :enable, :start ]
