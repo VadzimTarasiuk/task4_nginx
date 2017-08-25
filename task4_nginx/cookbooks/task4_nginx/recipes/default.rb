@@ -11,8 +11,13 @@ end
 
 #Nginx Configuration
 lb 'default' do
-  role 'default-sbeliakou-centos-73-x86-64-minimal.vagrantup.com'
+  role 'apache_server'
   action :attach
+end
+
+template '/etc/nginx/conf.d/upstreams.conf' do
+  source 'upstreams.conf.erb'
+  mode '0755'
 end
 
 service 'nginx' do
