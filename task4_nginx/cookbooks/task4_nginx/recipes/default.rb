@@ -9,10 +9,19 @@ package 'nginx' do
   action :install
 end
 
+package 'net-tools' do
+  action :install
+end
+
 #Nginx Configuration
 lb 'default' do
   role 'apache_server'
   action :attach
+end
+
+template '/etc/nginx/nginx.conf' do
+  source 'nginx.conf.erb'
+  mode '0755'
 end
 
 template '/etc/nginx/conf.d/upstreams.conf' do
