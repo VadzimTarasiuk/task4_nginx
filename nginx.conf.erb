@@ -29,7 +29,10 @@ http {
 
     include             /etc/nginx/mime.types;
     default_type        application/octet-stream;
-    include /etc/nginx/conf.d/*.conf;
+    #include /etc/nginx/conf.d/*.conf;
+    upstream lbservers {
+        include /etc/nginx/conf.d/upstreams.conf;
+    }
 
     server {
         listen       80 default_server;

@@ -7,7 +7,7 @@ action :attach do
     ip = "#{node['network']['interfaces']['enp0s8']['routes'][0]['src']}"
     block do
       file_editor = Chef::Util::FileEdit.new("/etc/nginx/conf.d/upstreams.conf")
-      file_editor.insert_line_before_match(/(.*)}/,"server #{ip};")
+      file_editor.insert_line_if_no_match(/server #{ip};/,"server #{ip};")
       file_editor.write_file       
         service "nginx" do    
           action :restart  

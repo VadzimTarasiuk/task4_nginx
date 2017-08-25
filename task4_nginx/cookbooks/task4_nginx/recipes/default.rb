@@ -26,7 +26,7 @@ end
 #Nginx Configuration
 lb 'default' do
   role 'apache_server'
-  action :attach
+  action :detach
 end
 
 service 'nginx' do
